@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/shailugit/gittesting/issues"
   },
-  "homepage": "https://github.com/shailugit/gittesting#readme"
+  "homepage": "https://github.com/shailugit/gittesting#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "name": "gittest",
+  "version": "1.0.0",
+  "description": "test git and nodejs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shailugit/gittesting.git"
+  },
+  "keywords": [
+    "git",
+    "cmd"
+  ],
+  "author": "shailesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shailugit/gittesting/issues"
+  },
+  "homepage": "https://github.com/shailugit/gittesting#readme"
+}

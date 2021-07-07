@@ -1,0 +1,174 @@
+What is Elastic Search
+Elasticsearch is an Apache Lucene-based search server. Elasticsearch is a real-time distributed and open source full-text search and analytics engine. It is accessible from RESTful web service interface and uses schema less JSON (JavaScript Object Notation) documents to store data
+
+Features: 
+•	Elasticsearch is scalable up to petabytes of structured and unstructured data.
+•	Elasticsearch can be used as a replacement of document stores like MongoDB and RavenDB.
+•	Elasticsearch uses denormalization to improve the search performance.
+•	Elasticsearch is one of the popular enterprise search engines, and is currently being used by many big organizations like Wikipedia, The Guardian, StackOverflow, GitHub etc.
+•	Elasticsearch is an open source and available under the Apache license version 2.0.
+Uses:
+•	Log analysis 
+•	BI
+•	System analysis
+•	Web Analytics
+Elastic Search with respect to RDBMS
+Elasticsearch	RDBMS
+Cluster	Database
+Shard	Shard
+Index	Table
+Field	Column
+Document	Row
+
+Concept of _doc or mapping type:
+E.G. Instead of storing tweets and users in a single twitter index, you could store tweets in the tweets index and users in the user index. Indices are completely independent of each other and so there will be no conflict of field types between indices.
+Components for Elastic Search: 
+•	E: Elastic search > Provide analytical capabilities, its distributed and highly scalable search engine
+•	L> Logstash > Is a log pipeline tool facilitates data cleansing, data mapping to ensure data ingested in ES.
+•	K> Kibana> Visualization layer, like dashboards, tables, charts etc. 
+•	Cluster: One or more nodes.
+•	Nodes: Running instance of elastic search. It can be Master/Data/Ingest/Tribe node.
+•	Index: Logical namespace
+•	Type: List of fields
+•	Shards: Primary and replica. 
+		When indexes are split into multiple smaller chunks.
+		Primary shard defined at index creation. 
+
+Queries:
+•	To get all data
+GET /courses/_search
+{
+  "query": { 
+    "match_all": {} 
+}
+}
+•	Search from all indices which start with course having E7 in it.
+POST /courses*/_search
+{
+   "query":{
+      "query_string":{
+         "query":"E7"
+      }
+   }
+}
+•	Search index and get only selected items in your results.
+GET courses/_doc/5?_source_includes=name,department
+•	delete index.
+DELETE courses/_doc/4
+•	To search for specific terms within a field, you can use a match query
+GET /courses/_search
+{  
+  "query": { "match": {"name":"computer"}  }}
+•	To search for multiple terms within a field, you can use a match query using bool and must
+GET /courses/_search
+{
+   "query": { 
+     "bool":{
+     "must":[
+      {"match": {"name":"computer"}},              
+      {"match": {"room":"c8"}}
+      ]
+     }
+ }
+}
+•	To search for multiple terms within a field, you can use a match query using bool and must and exclude using must not match
+GET /courses/_search
+{
+   "query": { 
+     "bool":{
+     "must":[
+      {"match": {"name":"computer"}},              
+      {"match": {"room":"c8"}}
+      ],
+      "must_not": [
+        {
+          "match": {"professor.name": "bill"}}
+      ]
+     }
+ }
+}
+•	To do multiple match, you can use multi match query using fields
+GET /courses/_search
+{
+   "query":{
+   "multi_match":{
+      "fields":["name","professor.department"],
+	  "query":"accounting"
+	  }
+	}
+}
+•	To match the sentence or part of sentence use match_parse
+GET /courses/_search
+{
+   "query":{
+   "match_phrase":{
+      "course_description":"from the business school taken by final year"
+	  }
+	}
+}
+•	Match Phrase_prefix: Match the sentence or part of the sentence(even the  word is broken half way like fin instead of final
+GET /courses/_search
+{
+   "query":{
+   "match_phrase_prefix":{
+      "course_description":"from the business school taken by fin"
+	  }
+	}
+}
+
+•	Terms : Returns documents that contain one or more exact terms in a provided field.
+GET /courses/_search
+{
+  "query": {
+    "terms": {
+    "name":["computer","accounting"]
+    }
+  }
+ }
+•	Range : Returns documents that in in range in a provided field.
+GET /courses/_search
+{
+   "query":{
+     "range": {
+       "students_enrolled": {
+         "gte": 10,
+•	Filter: Will just filter the criteria, will not calculate relevancy score like search syntax . Filters are cached. Hence it is faster. If u don’t care about relevancy scoring, we can use filter
+GET /courses/_search
+{
+   "query":{
+     "bool": {
+       "filter": {
+         "match":{"name":"accounting"}
+       }
+       }
+     }
+   }
+         "lte": 20
+       }
+     }
+   }
+}
+Aggregation DSL: Display set of records
+GET /courses/_search
+{
+  "size":"5",                                     
+  "query": { "match_all": {} 
+ }
+}
+•	used to get the average of any numeric field present in the aggregated documents
+POST /courses/_search
+{
+   "aggs":{
+      "avg_fees":{"avg":{"field":"students_enrolled"}}
+   }
+}
+•	To get 5th document to nth document and then sort or sort first and then displaying from 5th doc to nth doc?
+GET /courses/_search
+{
+  "query": { "match_all": {} },
+  "sort": [
+    { "students_enrolled": "asc" }
+  ],
+  "from": 0,                                      
+  "size": 5
+}

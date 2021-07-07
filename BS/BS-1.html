@@ -1,7 +1,118 @@
 <html>
 <head>
+    <title>Bootstrap examples</title>
+   
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-This is to show example BootStrap.
+    <div class="container-fluid bg-danger border border-danger">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ANCHORTAG-BRAND</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Action 1</a>
+                        <a class="dropdown-item" href="#">Action 2</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+
+  <div class="container bg-success border border-danger">
+      The .container class is for resposive fixed width, use it if you need to add padding on side.
+      containers have 15px left and right padding, with no top or bottom padding. 
+      To add extra padding use pt-3=add a top padding of 16px
+      Below are the 5 classes in BS-4
+      <li>
+      .col- (extra small devices - screen width less than 576px)</li>
+      <li>
+      .col-sm- (small devices - screen width equal to or greater than 576px)</li>
+      <li>
+      .col-md- (medium devices - screen width equal to or greater than 768px)</li>
+      <li>
+      .col-lg- (large devices - screen width equal to or greater than 992px)</li>
+      <li>
+      .col-xl- (xlarge devices - screen width equal to or greater than 1200px)</li>
+  </div>
+</br>
+  <div class="container-fluid bg-warning">
+    The .container-fluid class is for resposive to take full width, use if if you need to removed padding on side.
+    The .container-fluid class provides a full width container, spanning the entire width of the viewport
+</div>
+</br>
+<h6>Example with 3 column in row </h6>
+<div class="row">
+    <div class="col-xl-4 bg-success">
+        col-xl-4
+    </div>
+    <div class="col-xl-4">
+        col-xl-4
+    </div>
+    <div class="col-xl-4 bg-success">
+        col-xl-4
+    </div>
+</div>
+</br>
+
+<div class="container" id="#c2">
+<h6>Table Example with BS table</h6>
+    <div class="row">
+        rowspan="4" means it will merge all 4 rows
+        colspan="6" means it will merge all 6 columns
+        use table-responsive-sm for table responsive on small devices
+    </div>
+    
+    <table class="table table-bordered table-hover table-responsive-sm">
+        <thead>
+            <tr class="bg-dark">
+                <th class="text-center text-white" colspan="6" >Example table</th>
+            </tr>
+        </thead>     
+        <tbody>
+            <tr>
+                <td rowspan="4" class="text-center" style="padding-top: 50px;">HOURS</td>               
+            </tr>             
+            <tr>
+                <td class="text-center bg-primary">MON</td>
+                <td class="text-center">TUE</td>
+                <td class="text-center bg-primary">WED</td>
+                <td class="text-center">THS</td>
+                <td class="text-center bg-primary">FRI</td>
+            </tr>
+            <tr>
+                <td class="text-center bg-primary">C#</td>
+                <td class="text-center">C++</td>
+                <td class="text-center bg-primary">JAVA</td>
+                <td class="text-center">NODEJS</td>
+                <td class="text-center bg-primary">BS</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="bg-light text-center"> BREAK</td>
+            </tr>
+        </tbody>   
+    </table>
+    
+</div>
 </body>
 </html>

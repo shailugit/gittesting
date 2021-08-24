@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+<p>
+This part will cover important concepts of ASP.NET core
+</p>
+<b>Concepts:</b></br>
+<li>	Extension Method: It enable you to add methods to existing types without creating new drived type, its a kind of wrapper class.</br>
+To extend the method create helper class which should be "static" and method should have 1st paramter using "this" keyword.
+</li>
+<li>	Repository Pattern.</li>
+<li>	Dependency Injection: DI used to build loosly coupled application </li>
+<li>	Design Patterns: Easy to write test cases, TDD approach </li>
+<li>	Middleware: MW in .NET Core, it is responsible to  handle http request and response. Ex Middleware for Auth/Auth/Serve Static files etc</br>
+In the middleware components we used to setup request processing pipeline. It's the pipeline which determin how request and response will process in .NET core.</br>
+The request pipleline is configure as a part of app startup in Configure() method. MW E.X. request will go as Logging>>call>>StaticFiles>>call>>MVC and response will reverse<br>
+Middleware component has access to both incoming request and outgoing response. A MW component may handle the request and may decide not to call next MW in 
+pipeline. This is called short circuiting. E.X. If call for Static file MW will call Static files only not MVC as it save unnecessary calls.</br>
+MW componets executed in the order they added to the pipeline, app will not work if order is wrong. .NET Core give complete control over MW components.</br>
+To call the next MW then register MW with Use() method. This is having 2 parameter, 1st is HttpContext, 2nd is Func type which is a generic delegate represent next MW in pipeline.
+  
+ </li>
+</body>
+</html>

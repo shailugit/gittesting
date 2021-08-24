@@ -1,0 +1,37 @@
+<html>
+<head>
+</head>
+<body>
+<p>
+ASP.NET Important files & structure
+</p>
+<li>	Project File: Specify target application & framework, how application hosted, InProcess/OutProcess, Include NuGet references.</li>
+<li>	The default is InProcess where app host inside IIS, OutProcess is where app host in Krestel App Server</li>
+<li>	Program.cs:  </li>
+<li>	Startup.cs: Two main methods Configure() & ConfigureServices() </li>
+<li>	launchsettings.json: Used for local development, it has Authentication, IIS, profiles app url kind of settings </li>
+<li>	appsettings.json: Used for publishing </li>
+
+<p>
+<b>Program.CS</b>: Main Method </br>
+public static void Main(string[] args)
+    {
+        CreateWebHostBuilder(args).Build().Run();
+    } </br>
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
+</p>
+.NET Core run as a Console application, this method configure the app and start it, it's an entry point and call CreateWebHostBuilder().
+CreateWebHostBuilder() return IWebHostBuilder, on this Build() method is called which builds a web host & Run() will run webapplication.</br>
+<b>WebHost.CreateDefaultBuilder()</b> will create WebHost with default config files it also configure the Startup class.
+Its a static method of WebHost class and perform task like -Setting up webserver, Load host & config files, Config logging.
+In case of InProcess CreateDefaultBuilder call UseIIS() method and host app inside IIS.
+<p>
+<b>StartUp Class:</b> Having two main methods
+<li>ConfigureServices(): Method to config services in .NET Core </li>
+<li>Configure(): Method to setup application request processing pipeline.</li>
+</p>
+</br>
+</body>
+</html>

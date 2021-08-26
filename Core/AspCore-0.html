@@ -5,21 +5,36 @@
 <p>
 This part will cover important concepts of ASP.NET core
 </p>
-<b>Concepts:</b></br>
-<li>	Extension Method: It enable you to add methods to existing types without creating new drived type, its a kind of wrapper class.</br>
+<b>.NET Core Concepts:</b></br>
+<li><b>Extension Method:</b> It enable you to add methods to existing types without creating new drived type, its a kind of wrapper class.</br>
 To extend the method create helper class which should be "static" and method should have 1st paramter using "this" keyword.
 </li>
-<li>	Repository Pattern.</li>
-<li>	Dependency Injection: DI used to build loosly coupled application </li>
-<li>	Design Patterns: Easy to write test cases, TDD approach </li>
-<li>	Middleware: MW in .NET Core, it is responsible to  handle http request and response. Ex Middleware for Auth/Auth/Serve Static files etc</br>
+<li><b>Repository Pattern:</b> Its a kind of abstraction for data access layer, its a kind of MW for DB layer. It will isolate data access code.
+Benefit is all changes you can do at 1 place, clean code, loosly coupled, testing will be easy, to create use EF model. </br>
+To create use Interface add methods CURD methods, then implement it in your class , E.X In M/R db & SQL db and then use/change it at ConfigureServices()
+</li>
+<li><b>Dependency Injection:</b> DI used to build loosly coupled application. This pattern involve 3 type classes 1-Client:Depend on service, 2- Service: Provide service, 3-Injector:Inject service class object to client</br>
+https://dotnettutorials.net/lesson/dependency-injection-design-pattern-csharp/</br>
+Injector class inject dependecy in 3 ways: 1- Constructor injection 2- Property injection 3- Method injection
+</br>
+ASP.NET core provide 3 methods to register services using DI
+<b>AddSingleton()</b>- This is used to create singleton service. It is created when it is 1st requested. The same instance is used by all subsequent request.
+So its created 1 time per application and instance used throughout the life time of application.
+<b></br>AddTransient()</b>- This is used to create new instance of service each time it is requested. Instance is requested whether its in same http or across diff http requests
+<b></br>AddScope()</b>- This is used to created scoped service, new instance created per request within scope. E.X 1 instance per http request but use same instance 
+in other calls within same web request. It use same instance within the scope of htpp request but new instance for diff http request.
+ </li>
+<li><b>Middleware:</b> MW in .NET Core, it is responsible to  handle http request and response. Ex Middleware for Auth/Auth/Serve Static files etc</br>
 In the middleware components we used to setup request processing pipeline. It's the pipeline which determin how request and response will process in .NET core.</br>
-The request pipleline is configure as a part of app startup in Configure() method. MW E.X. request will go as Logging>>call>>StaticFiles>>call>>MVC and response will reverse<br>
+The request pipleline is configure as a part of app startup in Configure() method.
+ MW E.X. request will go as Logging>>call>>StaticFiles>>call>>MVC and response will reverse.
+ E.X request arrive at MW1 for log then MW1 call next() which invoke MW2 >>MW3>> and then reverse for sending response.
+<br>
 Middleware component has access to both incoming request and outgoing response. A MW component may handle the request and may decide not to call next MW in 
 pipeline. This is called short circuiting. E.X. If call for Static file MW will call Static files only not MVC as it save unnecessary calls.</br>
 MW componets executed in the order they added to the pipeline, app will not work if order is wrong. .NET Core give complete control over MW components.</br>
-To call the next MW then register MW with Use() method. This is having 2 parameter, 1st is HttpContext, 2nd is Func type which is a generic delegate represent next MW in pipeline.
-  
+To call the next MW then register MW with Use() method. This is having 2 parameter, 1st is HttpContext, 2nd is Func type which is a generic delegate represent next MW in pipeline.<br> 
+https://csharp-video-tutorials.blogspot.com/2019/01/configure-aspnet-core-request.html
  </li>
 </body>
 </html>

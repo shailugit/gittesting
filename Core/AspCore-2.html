@@ -29,7 +29,11 @@ Its a static method of WebHost class and perform task like -Setting up webserver
 In case of InProcess CreateDefaultBuilder call UseIIS() method and host app inside IIS.
 <p>
 <b>StartUp Class:</b> Having two main methods
-<li>ConfigureServices(): Method to config services in .NET Core </li>
+<li>ConfigureServices(): Method to config services in .NET Core </br>
+Services are register like 
+    services.AddMvc();
+    services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+ </li>
 <li>Configure(): Method to setup application request processing pipeline.</li>
 </p>
 </br>

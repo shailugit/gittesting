@@ -6,7 +6,7 @@
 This part will cover important concepts of ASP.NET core
 </p>
 <b>.NET Core Concepts:</b></br>
-<li><b>Extension Method:</b> It enable you to add methods to existing types without creating new drived type, its a kind of wrapper class.</br>
+<li><b>Extension Method:</b> Extension methods allow you to inject additional methods without modifying, deriving or recompiling the original class, struct or interface, its a kind of wrapper class.</br>
 To extend the method create helper class which should be "static" and method should have 1st paramter using "this" keyword.
 </li>
 <li><b>Repository Pattern:</b> Its a kind of abstraction for data access layer, its a kind of MW for DB layer. It will isolate data access code.
@@ -36,5 +36,7 @@ MW componets executed in the order they added to the pipeline, app will not work
 To call the next MW then register MW with Use() method. This is having 2 parameter, 1st is HttpContext, 2nd is Func type which is a generic delegate represent next MW in pipeline.<br> 
 https://csharp-video-tutorials.blogspot.com/2019/01/configure-aspnet-core-request.html
  </li>
+ In order to create your Middleware component, 1-Class needs to be inherited from the IMiddleware interface. 
+ 2-Implement the InvokeAsync method, 3-Inject the service in MW, 4-Register service
 </body>
 </html>

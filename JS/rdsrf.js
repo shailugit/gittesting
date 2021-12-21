@@ -49,13 +49,16 @@ function SetError(message)
  const SendData =(opco,aptid)=>{
  var d2 = new Date();
   
-  fetch(`http://njomsgwd09:84/api/Rds/rds-v1/${opco}/${aptid}`)  
+  fetch(`http://njomsgwd09/RdsWebApi/api/Rds/ValidateAppointment/rds-v1/${opco}/${aptid}`)  
   .then(response => response.json())
   .then(data => {
 	  console.log(data);	
     console.log(data.apptid);	
+    localStorage.setItem('aptid',aptid);
+    localStorage.setItem('opco',opco);
     if (data.apptid==aptid)
-      location.href =`RegisterVechicle.html?opco=${opco}&appid=${aptid}`; 
+      //location.href =`RegisterVechicle.html?opco=${opco}&appid=${aptid}`; 
+      location.href =`RegisterVechicle.html`; 
     else
     { 
       SetError('No matching appointment id found, please enter valid appointment id.');
@@ -66,3 +69,43 @@ function SetError(message)
     SetError(`System error ${error}`);     
   })
   }
+
+ 
+  let dropdown = document.getElementById('inputState');
+  dropdown.length = 0;
+  
+  let defaultOption = document.createElement('option');
+  defaultOption.text = 'Select OpCo.. .';
+  
+  dropdown.add(defaultOption);
+  dropdown.selectedIndex = 0;
+  
+  const url = 'http://njomsgwd09/RdsWebApi/api/Rds/LoadOpCo/rds-v1';
+  
+  fetch(url)  
+    .then(  
+      function(response) {  
+        if (response.status !== 200) {  
+          console.warn('Looks like there was a problem with API. Status Code: ' + 
+            response.status);  
+          return;  
+        }
+        localStorage.removeItem('aptid');
+        localStorage.removeItem('opco');
+        // Examine the text in the response  
+        response.json().then(function(data) {  
+          let option;
+      
+        for (let i = 0; i < data.length; i++) {
+            option = document.createElement('option');
+            option.text = data[i].warehousename;
+            option.value = data[i].warehousecode;
+            dropdown.add(option);
+        }    
+        });  
+      }  
+    )  
+    .catch(function(err) {  
+      console.error('Fetch Error -', err);  
+    });
+  

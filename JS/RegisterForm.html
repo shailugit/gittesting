@@ -16,15 +16,15 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
         <img
-          src="img1.jpg"
-          class="rounded-circle"
+          src="download.png"
+          class="rounded-rectangle"
           height="30"
           alt="CoolBrand"
         />
@@ -54,22 +54,20 @@
                     <select id="inputState" class="form-control" aria-placeholder="Select OpCo"> 
                       <option>Please select...</option>
                       <option selected="">B165</option>
-                      <option>B220</option>
-					  <option>B300</option>
                     </select>
                   </div>
                   <!-- form-group end.// -->
                   <div class="form-group col-md-6">
-                    <label>Appointment Id </label>
-                    <input id="aptid" type="text" class="form-control" placeholder="Enter your appointment id" maxlength="20"/>	  
+                    <label class="control-label " for="aptid">Appointment Id </label>      
+                    <input id="aptid" type="text" class="form-control" placeholder="Enter your appointment id" maxlength="20"/>
                     </div>
-                  <!-- form-group end.// -->				  
+                  <!-- form-group end.// -->
                 </div>
-				 
+
                 <div class="form-group">
                   <button id ="btn1" type="submit" value="submit" class="btn btn-primary btn-block  bg-dark">
-                    Search
-                  </button>                  
+                    <i class="fa fa-search"></i> Search
+                  </button> 
                 </div>                <!-- form-group// -->
               </form>
             </article>
@@ -84,6 +82,6 @@
    
     <script src="rdsrf.js">
     </script>
-
+    
   </body>
 </html>

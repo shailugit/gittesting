@@ -29,13 +29,13 @@ function SetError(message)
         var opco = document.getElementById('inputState');
         var aptid = document.getElementById('aptid');
         
-        if (opco.value.length<3)
+        if (opco.value.length<1)
         {
          //swal("Error!", "invalid opco" , "error");  
          SetError('Invalid opco, please select valid opco number.');          
           return false;
          }
-        if (aptid.value.length<2)
+        if (aptid.value.length<2 || isNaN(aptid.value))
         {
           SetError('Invalid appointment id, please enter valid appointment id.');
           return false;
@@ -98,8 +98,8 @@ function SetError(message)
       
         for (let i = 0; i < data.length; i++) {
             option = document.createElement('option');
-            option.text = data[i].warehousename;
-            option.value = data[i].warehousecode;
+            option.text = data[i].warehousecode;
+            option.value = data[i].opco;
             dropdown.add(option);
         }    
         });  

@@ -1,144 +1,204 @@
-<html>
-  <head>
-    
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Latest compiled and minified CSS -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Popper JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <!-- Latest compiled JavaScript -->
+  <html>
+    <head>
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
-        <img
-           src="download.png"
-          class="rounded-rectangle"
-          height="30"
-          alt="CoolBrand"
-        />
-      </a>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="https://www.pfgc.com/">Performance Food Group <span class="sr-only">(current)</span></a>
-          </li>   
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container" id ="c1">      
-      <br />
-      <h3><p class="text-center">Performance Food Group</p></h3>
-		<h5><p class="text-center">Required Delivery Vechicle Data Collection</p></h5>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="card">
-            <header class="card-header">              
-              <h4 class="card-title mt-2 text-center">Register</h4>
-            </header>
-            <article class="card-body">
-              <form id="f2" class ="form">
-                <div class="form-row">
-                  <div class="col form-group">
-                    <label>Drivers Name </label>
-                    <input type="text" id ="driver" class="form-control" placeholder="Driver name" minlength="2" maxlength="100"/>
-                  </div>                  
-                </div>
-				 <div class="form-row">
-                  <div class="col form-group">
-                    <label>Company Name </label>
-                    <input type="text" id="company" class="form-control" placeholder="Company name" minlength="2" maxlength="100"/>
-                  </div>                  
-                </div>
-				<div class="form-row">
-                  <div class="col form-group">
-                    <label>Driver Mobile Phone Number </label>
-                    <input type="number" id="phone" class="form-control" placeholder="Mobile number" name="phone" minlength="5" maxlength="20">
-                  </div>                  
-                </div>
-				 <div>
-				  <label>Truck Tractor License Plate </label>
-				  </div>
-				<div class="form-row">								
-                  <div class="form-group col-md-6">				  				 
-				    <label>State</label>
-                    <select id="state" class="form-control">
-                      <option>Please select...</option>
-                      <option selected="">VA</option>
-                      <option>TX</option>
-                    </select>
-                  </div>				  
-                  <!-- form-group end.// -->
-                  <div class="form-group col-md-6">
-                    <label>Number</label>
-                    <input type="text" id="plate" class="form-control" placeholder="" minlength="2" maxlength="20"/>
-                  </div>
-                  <!-- form-group end.// -->				  
-                </div>
-				<div class="form-row">
-                  <div class="col form-group">
-                    <label>Vechicle Identification Number </label>
-                    <input type="text" id="vin" class="form-control" placeholder="VIN number" minlength="17" maxlength="17"/>
-                  </div>                  
-                </div>
-				<div class="form-row">
-                  <div class="col form-group">
-                    <label>DOT Number </label>
-                    <input type="text" id="dot" class="form-control" placeholder="DOT number" minlength="2" maxlength="50"/>
-                  </div>                  
-                </div>
-				<div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label>Vechicle Class</label>
-                    <select id="vclass" class="form-control">
-                      <option>Please select...</option>
-                      <option selected="">Class-1</option>
-                      <option>Class-2</option>
-					  <option>Class-3</option>
-					  <option>Class-4</option>
-					  <option>Class-8</option>					  
-                    </select>
-                  </div>
-                </div>
-				<div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label>Fuel Type</label>
-                    <select id="fueltype" class="form-control">
-                      <option>Please select...</option>
-                      <option selected="">FT-1</option>
-                      <option>FT-2</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block  bg-dark">
-                    Submit
-                  </button>
-                </div>                <!-- form-group// -->
-
-              </form>
-            </article>
-            <!-- card-body end .// -->            
-          </div>
-          <!-- card.// -->
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="https://www.pfgc.com/">
+          <img
+            src="download.png"
+            class="rounded-rectangle"
+            height="30"
+            alt="CoolBrand"
+          />
+        </a>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+            </li>   
+          </ul>
         </div>
-        <!-- col.//-->
+      </nav>
+
+      <div class="container" id ="c1">           
+        <h3><p class="text-center">Performance Food Group</p></h3>
+      <h5><p class="text-center">Required Delivery Vechicle Data Collection</p></h5>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card">
+              <header class="card-header">              
+                <h4 class="card-title mt-2 text-center">Register</h4>
+              </header>
+              <article class="card-body">
+                <form id="f2" class ="form">
+                  <div class="form-row">
+                    <div class="col form-group">
+                      <label>Drivers Name </label>
+                      <input type="text" id ="driver" class="form-control" placeholder="Driver name" minlength="2" maxlength="100"/>
+                    </div>                  
+                  </div>
+          <div class="form-row">
+                    <div class="col form-group">
+                      <label>Company Name </label>
+                      <input type="text" id="company" class="form-control" placeholder="Company name" minlength="2" maxlength="100"/>
+                    </div>                  
+                  </div>
+          <div class="form-row">
+                    <div class="col form-group">
+                      <label>Driver Mobile Phone Number </label>
+                      <input type="number" id="phone" class="form-control" placeholder="Mobile number" name="phone" minlength="5" maxlength="20">
+                    </div>                  
+                  </div>
+          <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Vechicle Class</label>
+                      <select id="vclass" class="form-control">
+                        <option selected="">Class-1</option>
+                        <option>Class-2</option>
+              <option>Class-3</option>
+              <option>Class-4</option>
+              <option>Class-5</option>
+              <option>Class-6</option>
+              <option>Class-7</option>
+              <option>Class-8</option>					  
+                      </select>
+                    </div>
+                  </div>
+          <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Fuel Type</label>
+                      <select id="fueltype" class="form-control" onchange="showOption(this)">
+                        <option>Standard-Diesel</option>
+                        <option selected="">Near Zero-CNG</option>
+                        <option>Near Zero-Hydrogen</option>
+                        <option>Zero-Electric</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div id="hidden_div" style="display:block;">        
+          <div>
+            <label>Truck Tractor License Plate </label>
+            </div>
+          <div class="form-row">								
+                    <div class="form-group col-md-6">				  				 
+              <label>State</label>
+                      <select id="state" class="form-control">
+                        <option>Please select...</option>                        
+                        <option value="AL">Alabama (AL)</option>
+                        <option value="AK">Alaska (AK)</option>
+                        <option value="AZ">Arizona (AZ)</option>
+                        <option value="AR">Arkansas (AR)</option>
+                        <option value="CA">California (CA)</option>
+                        <option value="CO">Colorado (CO)</option>
+                        <option value="CT">Connecticut (CT)</option>
+                        <option value="DE">Delaware (DE)</option>
+                        <option value="DC">District Of Columbia (DC)</option>
+                        <option value="FL">Florida (FL)</option>
+                        <option value="GA">Georgia (GA)</option>
+                        <option value="HI">Hawaii (HI)</option>
+                        <option value="ID">Idaho (ID)</option>
+                        <option value="IL">Illinois (IL)</option>
+                        <option value="IN">Indiana (IN)</option>
+                        <option value="IA">Iowa (IA)</option>
+                        <option value="KS">Kansas (KS)</option>
+                        <option value="KY">Kentucky (KY)</option>
+                        <option value="LA">Louisiana (LA)</option>
+                        <option value="ME">Maine (ME)</option>
+                        <option value="MD">Maryland (MD)</option>
+                        <option value="MA">Massachusetts (MA)</option>
+                        <option value="MI">Michigan (MI)</option>
+                        <option value="MN">Minnesota (MN)</option>
+                        <option value="MS">Mississippi (MS)</option>
+                        <option value="MO">Missouri (MO)</option>
+                        <option value="MT">Montana (MT)</option>
+                        <option value="NE">Nebraska (NE)</option>
+                        <option value="NV">Nevada (NV)</option>
+                        <option value="NH">New Hampshire (NH)</option>
+                        <option value="NJ">New Jersey (NJ)</option>
+                        <option value="NM">New Mexico (NM)</option>
+                        <option value="NY">New York (NY)</option>
+                        <option value="NC">North Carolina (NC)</option>
+                        <option value="ND">North Dakota (ND)</option>
+                        <option value="OH">Ohio (OH)</option>
+                        <option value="OK">Oklahoma (OK)</option>
+                        <option value="OR">Oregon (OR)</option>
+                        <option value="PA">Pennsylvania (PA)</option>
+                        <option value="RI">Rhode Island (RI)</option>
+                        <option value="SC">South Carolina (SC)</option>
+                        <option value="SD">South Dakota (SD)</option>
+                        <option value="TN">Tennessee (TN)</option>
+                        <option value="TX">Texas (TX)</option>
+                        <option value="UT">Utah (UT)</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                        <option value="AS">American Samoa (AS)</option>
+                        <option value="GU">Guam (GU)</option>
+                        <option value="MP">Northern Mariana Islands (MP)</option>
+                        <option value="PR">Puerto Rico (PR)</option>
+                        <option value="UM">United States Minor Outlying Islands (UM)</option>
+                        <option value="VI">Virgin Islands (VI)</option>
+                      </select>
+                    </div>				  
+                    <!-- form-group end.// -->
+                    <div class="form-group col-md-6">
+                      <label>Number</label>
+                      <input type="text" id="plate" class="form-control" placeholder="" minlength="2" maxlength="20"/>
+                    </div>
+                    <!-- form-group end.// -->				  
+                  </div>
+          <div class="form-row">
+                    <div class="col form-group">
+                      <label>Vechicle Identification Number </label>
+                      <input type="text" id="vin" class="form-control" placeholder="VIN number" minlength="17" maxlength="17"/>
+                    </div>                  
+                  </div>
+          <div class="form-row">
+                    <div class="col form-group">
+                      <label>DOT Number </label>
+                      <input type="text" id="dot" class="form-control" placeholder="DOT number" minlength="2" maxlength="50"/>
+                    </div>                  
+                  </div>
+
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block  bg-dark">
+                      Submit
+                    </button>
+                  </div>                <!-- form-group// -->
+
+                </form>
+              </article>
+              <!-- card-body end .// -->            
+            </div>
+            <!-- card.// -->
+          </div>
+          <!-- col.//-->
+        </div>
+        <!-- row.//-->
       </div>
-      <!-- row.//-->
-    </div>
-    <script src="rdsrv.js">
-    </script>
-  </body>
-</html>
+        <script src="rdsrv.js">
+        </script>
+      </body>
+  </html>

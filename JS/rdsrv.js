@@ -3,6 +3,14 @@ form.addEventListener('submit',(event)=>{
   event.preventDefault();
   validateForm();
 })
+
+function showOption(select){
+  if(select.value!="Zero-Electric"){
+   document.getElementById('hidden_div').style.display = "block";
+  } else{
+   document.getElementById('hidden_div').style.display = "none";
+  }
+} 
 function SetError(message)
 {
   toastr.options = {
@@ -52,15 +60,16 @@ function SetAlert(message)
 {
   localStorage.removeItem('aptid');
   localStorage.removeItem('opco');
-  swal({
-  title: "Completed",
-  text: message,
-  icon: "success",  
-})
-.then((willDelete) => {
-  window.location.href =`RegisterForm.html`;
-});
-  $("#f2")[0].reset();
+    swal({
+    title: "Completed",
+    text: message,
+    icon: "success",  
+    }).then((okay) => {
+    if (okay)  {
+    window.location.href =`RegisterForm.html`;
+    }
+    });
+  //$("#f2")[0].reset();
 }
 
  const validateForm=()=> {   
@@ -77,7 +86,7 @@ function SetAlert(message)
   var company = document.getElementById('company');
   var driver = document.getElementById('driver');
       
-        if (opco==null || opco.length<3)
+        if (opco==null || opco.length<1)
         {
           SetError('Invalid session, please select valid opco.');          
           return false;
@@ -132,11 +141,12 @@ fetch('http://njomsgwd09/RdsWebApi/api/Rds/SetRdsAppointment/rds-v1',
     if (data.message=="CREATED")
     {
     SetAlert(`Thanks for registration, your vechicle is registered with us with reference number: ${data.id}` );
-    location.href =`RegisterForm.html`;   
+    //location.href =`RegisterForm.html`;   
   }
     else if (data.message=="UPDATED")
-     { SetAlert(`Thanks for registration, your vechicle is updated with us with reference number: ${data.id}` );  
-      location.href =`RegisterForm.html`;   
+     { 
+       SetAlert(`Thanks for registration, your vechicle is updated with us with reference number: ${data.id}` );  
+      //location.href =`RegisterForm.html`;   
     }
       else
       SetError('Validation error occur.');

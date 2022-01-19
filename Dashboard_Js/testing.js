@@ -92,16 +92,24 @@ function SetError(message)
         }
         localStorage.removeItem('aptid');
         localStorage.removeItem('opco');
+
         // Examine the text in the response  
         response.json().then(function(data) {  
-          let option;
-      
-        for (let i = 0; i < data.length; i++) {
-            option = document.createElement('option');
-            option.text = data[i].warehousecode;
-            option.value = data[i].opco;
-            dropdown.add(option);
-        }    
+				console.log("checking..");
+         if (data != null && data!= undefined && data.length > 0) {
+			  console.log("populating data table...");
+		 $('#testtable').DataTable( {
+			 "scrollX": true,
+				data: data,
+				columns: [
+        { data: 'opco' },
+        { data: 'warehousecode' },
+        { data: 'warehousename' }
+		 		
+    ]
+			} );
+		 }
+          
         });  
       }  
     )  

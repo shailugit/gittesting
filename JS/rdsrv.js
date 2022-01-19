@@ -5,7 +5,7 @@ form.addEventListener('submit',(event)=>{
 })
 
 function showOption(select){
-  if(select.value!="Zero-Electric"){
+  if(select.value!="Standard-Diesel"){
    document.getElementById('hidden_div').style.display = "block";
   } else{
    document.getElementById('hidden_div').style.display = "none";
@@ -88,12 +88,12 @@ function SetAlert(message)
       
         if (opco==null || opco.length<1)
         {
-          SetError('Invalid session, please select valid opco.');          
+          SetError('Invalid session, please validate the OpCo from Appointment page.');          
           return false;
          }
         if (aptid==null|| aptid.length<2)
         {
-          SetError('Invalid appointment id, please enter valid appointment id.');
+          SetError('Invalid session, please validate the Appointment from Appointment page.');
           return false;
         }
         else
@@ -105,13 +105,21 @@ function SetAlert(message)
  const SendData =(opco,aptid, company,driver)=>{
  var d2 = new Date();
  var phone = document.getElementById('phone');
+  var vclass = document.getElementById('vclass');
+  var fueltype = document.getElementById('fueltype');
   var state = document.getElementById('state');
   var plate = document.getElementById('plate');
   var vin = document.getElementById('vin');
   var dot = document.getElementById('dot');
-  var vclass = document.getElementById('vclass');
-  var fueltype = document.getElementById('fueltype');
-
+  
+  if (fueltype.value=='Standard-Diesel')
+  {
+    state.value='';
+    plate .value='';
+    vin.value='';
+    dot.value='';
+  }
+ 
   let frmdata = {
     "id": 0,
     "apptid": aptid,
@@ -133,7 +141,7 @@ function SetAlert(message)
     "message": "NA"
   };
 
-fetch('http://njomsgwd09/RdsWebApi/api/Rds/SetRdsAppointment/rds-v1',
+fetch('http://njomsgwd09/RdsApiNet/api/Rtlx/SetRdsAppointment/rds-v1',
 {headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(frmdata), method: 'POST'})
   .then(response => response.json())
   .then(data => {
@@ -155,3 +163,34 @@ fetch('http://njomsgwd09/RdsWebApi/api/Rds/SetRdsAppointment/rds-v1',
 	  SetError(`The error is ${error}`);
   })
 }
+
+
+var appt= localStorage.getItem('aptid');
+var opcoid= localStorage.getItem('opco');
+
+const url = (`http://njomsgwd09/RdsApiNet/api/Rtlx/LoadDriverInfo/rds-v1/${opcoid}/${appt}`)  
+fetch(url)  
+  .then(  
+    function(response) {  
+      if (response.status !== 200) {  
+        console.warn('Looks like there was a problem with API. Status Code: ' + 
+          response.status);  
+        return;  
+      }
+      response.json().then(function(data) {  
+      document.getElementById('driver').value=data.driver;
+      document.getElementById('company').value=data.company;
+      document.getElementById('phone').value=data.Mobile;
+      document.getElementById('plate').value=data.plateno;
+      document.getElementById('vin').value=data.vin;
+      document.getElementById('dot').value=data.dot;
+	  document.getElementById('vclass').value=data.vechicleclass;
+	  document.getElementById('fueltype').value=data.fueltype;
+	  document.getElementById('state').value=data.state;
+      showOption(this.fueltype);
+      });  
+    }  
+  )  
+  .catch(function(err) {  
+    console.error('Fetch Error -', err);  
+  });

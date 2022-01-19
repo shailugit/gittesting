@@ -26,46 +26,46 @@ function SetError(message)
 
 }
  const validateForm=()=> { 
-        var opco = document.getElementById('inputState');
-        var aptid = document.getElementById('aptid');
+        var opco = document.getElementById('inputopco');
+        var userid = document.getElementById('uid');
         
-        if (opco.value.length<1)
+        if (opco.value.length<3)
         {
-         //swal("Error!", "invalid opco" , "error");  
          SetError('Invalid opco, please select valid opco number.');          
           return false;
          }
-        if (aptid.value.length<2 || isNaN(aptid.value))
+        if (userid.value.length<3)
         {
-          SetError('Invalid appointment id, please enter valid appointment id.');
+          SetError('Invalid user id, please enter valid user id.');
           return false;
        }
         else
-        {      
-          SendData(opco.value, aptid.value);
+        {   
+          localStorage.setItem('uid',userid.value);
+          localStorage.setItem('opco',opco.value);   
+          location.href =`PlinkReports.html`; 
+          //SendData(opco.value, userid.value);
         }
      } 
 
- const SendData =(opco,aptid)=>{
+ const SendData =(opco,userid)=>{
  var d2 = new Date();
-  
+  //validate plink user
   fetch(`http://njomsgwd09/RdsApiNet/api/Rtlx/ValidateAppointment/rds-v1/${opco}/${aptid}`)  
   .then(response => response.json())
   .then(data => {
 	  console.log(data);	
     console.log(data.apptid);	
-    localStorage.setItem('aptid',aptid);
+    localStorage.setItem('uid',userid);
     localStorage.setItem('opco',opco);
-    if (data.apptid==aptid)
-      //location.href =`RegisterVechicle.html?opco=${opco}&appid=${aptid}`; 
+    if (data.apptid==aptid)     
       location.href =`RegisterVechicle.html`; 
     else
     { 
-      SetError('No matching appointment id found, please enter valid appointment id.');
+      SetError('No matching user id found, please enter valid user id.');
     }
 	  })
-  .catch((error) => {
-    //swal("Error!", `SYstem error ${error}` , "error");   
+  .catch((error) => {    
     SetError(`System error ${error}`);     
   })
   }

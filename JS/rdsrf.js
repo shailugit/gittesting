@@ -37,7 +37,7 @@ function SetError(message)
          }
         if (aptid.value.length<2 || isNaN(aptid.value))
         {
-          SetError('Invalid appointment id, please enter valid appointment id.');
+          SetError('This Appointment is NOT within Todays Receiving Window, Please see On-Site.');
           return false;
        }
         else
@@ -49,7 +49,7 @@ function SetError(message)
  const SendData =(opco,aptid)=>{
  var d2 = new Date();
   
-  fetch(`http://njomsgwd09/RdsApiNet/api/Rtlx/ValidateAppointment/rds-v1/${opco}/${aptid}`)  
+  fetch(`https://rdsappointment.pfgc.com/api/Rtlx/ValidateAppointment/rds-v1/${opco}/${aptid}`)  
   .then(response => response.json())
   .then(data => {
 	  console.log(data);	
@@ -61,7 +61,7 @@ function SetError(message)
       location.href =`RegisterVechicle.html`; 
     else
     { 
-      SetError('No matching appointment id found, please enter valid appointment id.');
+      SetError('This Appointment is NOT within Todays Receiving Window, Please see On-Site.');
     }
 	  })
   .catch((error) => {
@@ -80,7 +80,7 @@ function SetError(message)
   dropdown.add(defaultOption);
   dropdown.selectedIndex = 0;
   
-  const url = 'http://njomsgwd09/RdsApiNet/api/Rtlx/LoadOpCo/rds-v1';
+  const url = 'https://rdsappointment.pfgc.com/api/Rtlx/LoadOpCo/rds-v1';
   
   fetch(url)  
     .then(  

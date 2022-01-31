@@ -1,5 +1,5 @@
 const form = document.getElementById("f2");
-form.addEventListener('submit',(event)=>{
+form.addEventListener('submit',(event)=>{  
   event.preventDefault();
   validateForm();
 })
@@ -65,11 +65,10 @@ function SetAlert(message)
     text: message,
     icon: "success",  
     }).then((okay) => {
-    if (okay)  {
+    //if (okay)  {
     window.location.href =`RegisterForm.html`;
-    }
+    //}
     });
-  //$("#f2")[0].reset();
 }
 
  const validateForm=()=> {   
@@ -85,22 +84,29 @@ function SetAlert(message)
  
   var company = document.getElementById('company');
   var driver = document.getElementById('driver');
+  
+	if (opco==null || opco.length<1 || aptid==null|| aptid.length<2)
+	{
+	  SetError('Invalid session, please validate the OpCo & Appointment from Appointment page.');          
+	  return false;
+	}
+	if (company.value.length<2 || driver.value.length<2 || document.getElementById('phone').value.length<8 )
+	{
+	  SetError('All Fields must be Completed to Submit');          
+	  return false;
+	}
+	if (fueltype.value!='Standard-Diesel')
+	{
+	  if(document.getElementById('state').value.length<2 || document.getElementById('plate')<2 || document.getElementById('vin').value.length<15 || document.getElementById('dot').value.length<3)
+	  {
+	  SetError('All Fields must be Completed to Submit');        
+	  return false;
+	  }
+	}
       
-        if (opco==null || opco.length<1)
-        {
-          SetError('Invalid session, please validate the OpCo from Appointment page.');          
-          return false;
-         }
-        if (aptid==null|| aptid.length<2)
-        {
-          SetError('Invalid session, please validate the Appointment from Appointment page.');
-          return false;
-        }
-        else
-        {      
-          SendData(opco, aptid, company.value,driver.value);
-        }
-     } 
+	SendData(opco, aptid, company.value,driver.value);
+
+} 
 
  const SendData =(opco,aptid, company,driver)=>{
  var d2 = new Date();
@@ -141,7 +147,7 @@ function SetAlert(message)
     "message": "NA"
   };
 
-fetch('http://njomsgwd09/RdsApiNet/api/Rtlx/SetRdsAppointment/rds-v1',
+fetch('https://rdsappointment.pfgc.com/api/Rtlx/SetRdsAppointment/rds-v1',
 {headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(frmdata), method: 'POST'})
   .then(response => response.json())
   .then(data => {
@@ -157,7 +163,7 @@ fetch('http://njomsgwd09/RdsApiNet/api/Rtlx/SetRdsAppointment/rds-v1',
       //location.href =`RegisterForm.html`;   
     }
       else
-      SetError('Validation error occur.');
+      SetError('All Fields must be Completed to Submit.');
     })
   .catch((error) => {
 	  SetError(`The error is ${error}`);
@@ -167,8 +173,7 @@ fetch('http://njomsgwd09/RdsApiNet/api/Rtlx/SetRdsAppointment/rds-v1',
 
 var appt= localStorage.getItem('aptid');
 var opcoid= localStorage.getItem('opco');
-
-const url = (`http://njomsgwd09/RdsApiNet/api/Rtlx/LoadDriverInfo/rds-v1/${opcoid}/${appt}`)  
+const url = (`https://rdsappointment.pfgc.com/api/Rtlx/LoadDriverInfo/rds-v1/${opcoid}/${appt}`)  
 fetch(url)  
   .then(  
     function(response) {  
@@ -184,13 +189,27 @@ fetch(url)
       document.getElementById('plate').value=data.plateno;
       document.getElementById('vin').value=data.vin;
       document.getElementById('dot').value=data.dot;
-	  document.getElementById('vclass').value=data.vechicleclass;
-	  document.getElementById('fueltype').value=data.fueltype;
-	  document.getElementById('state').value=data.state;
-      showOption(this.fueltype);
       });  
     }  
   )  
   .catch(function(err) {  
     console.error('Fetch Error -', err);  
   });
+
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {         
+          event.preventDefault();
+          event.stopPropagation();		      
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();

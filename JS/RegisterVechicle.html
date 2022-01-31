@@ -48,24 +48,27 @@
                 <h4 class="card-title mt-2 text-center">Register</h4>
               </header>
               <article class="card-body">
-                <form id="f2" class ="form">
+                <form id="f2" class ="form needs-validation" novalidate >
                   <div class="form-row">
                     <div class="col form-group">
                       <label>Drivers Name </label>
-                      <input type="text" id ="driver" class="form-control" placeholder="Driver name" minlength="2" maxlength="100"/>
-                    </div>                  
+                      <input type="text" id ="driver" class="form-control" placeholder="Driver name" minlength="2" maxlength="100" required/>
+                    <div class="valid-feedback">Looks good!</div>
+					</div>                  
                   </div>
           <div class="form-row">
                     <div class="col form-group">
                       <label>Company Name </label>
-                      <input type="text" id="company" class="form-control" placeholder="Company name" minlength="2" maxlength="100"/>
-                    </div>                  
+                      <input type="text" id="company" class="form-control" placeholder="Company name" minlength="2" maxlength="100" required/>
+					   <div class="valid-feedback">Looks good!</div>	
+					</div>                  
                   </div>
           <div class="form-row">
                     <div class="col form-group">
                       <label>Driver Mobile Phone Number </label>
-                      <input type="number" id="phone" class="form-control" placeholder="Mobile number" name="phone" minlength="5" maxlength="20">
-                    </div>                  
+                      <input type="number" id="phone" class="form-control" placeholder="Mobile number" name="phone" minlength="5" maxlength="20" required>
+					  <div class="valid-feedback">Looks good!</div>	
+					</div>                  
                   </div>
           <div class="form-row">
                     <div class="form-group col-md-6">
@@ -101,8 +104,7 @@
                     <div class="form-group col-md-6">				  				 
               <label>State</label>
                       <select id="state" class="form-control">
-                        <option>Please select...</option>                        
-                        <option value="AL">Alabama (AL)</option>
+                        <option selected="" value="AL">Alabama (AL)</option>
                         <option value="AK">Alaska (AK)</option>
                         <option value="AZ">Arizona (AZ)</option>
                         <option value="AR">Arkansas (AR)</option>
@@ -164,20 +166,23 @@
                     <!-- form-group end.// -->
                     <div class="form-group col-md-6">
                       <label>Number</label>
-                      <input type="text" id="plate" class="form-control" placeholder="" minlength="2" maxlength="20"/>
+                      <input type="text" id="plate" class="form-control" placeholder="" minlength="2" maxlength="20" required/>
+					  <div class="valid-feedback">Looks good!</div>	
                     </div>
                     <!-- form-group end.// -->				  
                   </div>
           <div class="form-row">
                     <div class="col form-group">
                       <label>Vechicle Identification Number </label>
-                      <input type="text" id="vin" class="form-control" placeholder="VIN number" minlength="17" maxlength="17"/>
+                      <input type="text" id="vin" class="form-control" placeholder="VIN number" minlength="17" maxlength="17" required/>
+					  <div class="valid-feedback">Looks good!</div>	
                     </div>                  
                   </div>
           <div class="form-row">
                     <div class="col form-group">
                       <label>DOT Number </label>
-                      <input type="text" id="dot" class="form-control" placeholder="DOT number" minlength="2" maxlength="50"/>
+                      <input type="text" id="dot" class="form-control" placeholder="DOT number" minlength="2" maxlength="50" required/>
+					  <div class="valid-feedback">Looks good!</div>	
                     </div>                  
                   </div>
 
